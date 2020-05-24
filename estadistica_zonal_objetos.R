@@ -21,6 +21,7 @@ ezonalobj <- function(objraster = NULL, nombre = '', objgeometrias = NULL, expor
       rename_all(function(x) paste(nombre, x, sep = '_'))
   } else {
     dfresumen <- t(sapply(unique(df[,'ID']), function(x) c(
+      n = length(na.omit(df[df[,'ID']==x,nombre])),
       min = min(df[df[,'ID']==x,nombre], na.rm = T),
       cuartil_ = quantile(df[df[,'ID']==x,nombre], 1/4, na.rm = T),
       media = mean(df[df[,'ID']==x,nombre], na.rm = T),
